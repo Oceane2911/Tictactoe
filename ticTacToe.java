@@ -25,6 +25,7 @@ class TicTacToe {
 
             System.out.println(cs);
         }
+        System.out.println("------------");
     }
 
     public static void choice() {
@@ -59,21 +60,47 @@ class TicTacToe {
         while ((board[0][0] == '.' || board[0][1] == '.' || board[0][2] == '.' || board[1][0] == '.'
                 || board[1][1] == '.' || board[1][2] == '.' || board[2][0] == '.' || board[2][1] == '.'
                 || board[2][2] == '.') && win == false) {
-            if (((board[0][0] == board[0][1] && board[0][0] == board[0][2])
-                    && (board[0][0] == 'x' || board[0][0] == 'o'))
-                    || ((board[1][0] == board[1][1] && board[1][0] == board[1][2])
-                            && (board[1][0] == 'x' || board[1][0] == 'o'))
-                    || ((board[2][0] == board[2][1] && board[2][0] == board[2][2])
-                            && (board[2][0] == 'x' || board[2][0] == 'o'))) {
-                win = true;
-                System.out.println("Le joueur " + value + " a gagne");
 
-            } else {
+            choice();
+            display();
 
-                choice();
-                display();
+            for (int i = 0; i < 3; i++) {
+                if ((board[i][0] == board[i][1] && board[i][0] == board[i][2])
+                        && (board[i][0] == 'x' || board[i][0] == 'o')) {
+                    win = true;
+                    display();
+                    System.out.println("Le joueur " + value + " a gagné");
+                    break;
+
+                }
+
+                else if ((board[0][i] == board[1][i] && board[0][i] == board[2][i])
+                        && (board[0][i] == 'x' || board[0][i] == 'o')) {
+                    win = true;
+                    display();
+                    System.out.println("Le joueur " + value + " a gagné");
+                    break;
+
+                } else if ((board[0][0] == board[1][1] && board[0][0] == board[2][2])
+                        && (board[0][0] == 'x' || board[0][0] == 'o')) {
+                    win = true;
+                    display();
+                    System.out.println("Le joueur " + value + " a gagné");
+                    break;
+
+                } else if ((board[0][2] == board[1][1] && board[0][2] == board[2][0])
+                        && (board[1][1] == 'x' || board[1][1] == 'o')) {
+                    win = true;
+                    display();
+                    System.out.println("Le joueur " + value + " a gagné");
+                    break;
+
+                }
             }
 
+        }
+        if (win == false) {
+            System.out.println("Match nul !");
         }
     }
 }
